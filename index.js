@@ -102,7 +102,7 @@ function initializeMyMove(x,y){
     if(lastX != -1 && lastY != -1 && winningMovePossible())
     {
         let pos = winningMovePossible();
-        grid[pos['x']][pos['y']] = 2;
+        grid[pos['y']][pos['x']] = 2;
     }
     //Boundary Conditions
     else if(((x == 0 && y ==0) || (x == 2 && y == 0) || (x == 0 && y ==2) || (x == 2 && y == 2 )))
@@ -219,13 +219,13 @@ function checkForWin(val){
 function winningMovePossible(val = 2){
     for(let i = 0; i<3 ;i++)
     {  
-        if(grid[i][0] == val && grid[i][1] == val && grid[i][2] == 0){ return {x:i,y:2} }
-        else if(grid[i][0] == val && grid[i][1] == 0 && grid[i][2] == val){return {x:i,y:1}}
-        else if(grid[i][0] == 0 && grid[i][1] == val && grid[i][2] == val){return {x:i,y:0}}
+        if(grid[i][0] == val && grid[i][1] == val && grid[i][2] == 0){ return {x:2,y:i} }
+        else if(grid[i][0] == val && grid[i][1] == 0 && grid[i][2] == val){return {x:1,y:i}}
+        else if(grid[i][0] == 0 && grid[i][1] == val && grid[i][2] == val){return {x:0,y:i}}
         
-        if(grid[0][i] == val && grid[1][i] == val && grid[2][i] == 0){ return {x:2,y:i} }
-        else if(grid[0][i] == val && grid[1][i] == 0 && grid[2][i] == val){ return {x:1,y:i} }
-        else if(grid[0][i] == 0 && grid[1][i] == val && grid[2][i] == val){ return {x:0,y:i} }
+        if(grid[0][i] == val && grid[1][i] == val && grid[2][i] == 0){ return {x:i,y:2} }
+        else if(grid[0][i] == val && grid[1][i] == 0 && grid[2][i] == val){ return {x:i,y:1} }
+        else if(grid[0][i] == 0 && grid[1][i] == val && grid[2][i] == val){ return {x:i,y:0} }
         
     }
 
@@ -237,11 +237,11 @@ function winningMovePossible(val = 2){
     {    return {x:0,y:0}; }
     
     else if(grid[0][2] == val && grid[1][1] == val && grid[2][0] == 0 )
-    {   return {x:2,y:0}; }
+    {   return {x:0,y:2}; }
     else if(grid[0][2] == val && grid[1][1] == 0 && grid[2][0] == val )
     {   return {x:1,y:1}; }
     else if(grid[0][2] == 0 && grid[1][1] == val && grid[2][0] == val )
-    {   return {x:0,y:2}; }
+    {   return {x:2,y:0}; }
 
     return false;
 }
@@ -257,18 +257,18 @@ function setIfAnyPlaceIsVacant(){
      else if(grid[2][2]==0)
      {   grid[2][2] = 2; return {x:2,y:2}}
      else if(grid[2][0]==0)
-     {   grid[2][0] = 2; return {x:2,y:0}}
+     {   grid[2][0] = 2; return {x:0,y:2}}
      else if(grid[0][2]==0)
-     {   grid[0][2] = 2; return {x:0,y:2}}
+     {   grid[0][2] = 2; return {x:2,y:0}}
      //Return middle free elements if any
      else if(grid[0][1]==0)
-     {   grid[0][1] = 2; return {x:0,y:1}}
+     {   grid[0][1] = 2; return {x:1,y:0}}
      else if(grid[1][0]==0)
-     {   grid[1][0] = 2; return {x:1,y:0}}
+     {   grid[1][0] = 2; return {x:0,y:1}}
      else if(grid[2][1]==0)
-     {   grid[2][1] = 2; return {x:2,y:1}}
+     {   grid[2][1] = 2; return {x:1,y:2}}
      else if(grid[1][2]==0)
-     {   grid[1][2] = 2; return {x:1,y:2}}
+     {   grid[1][2] = 2; return {x:2,y:1}}
 }
 
 function checkForAllFilled(){
