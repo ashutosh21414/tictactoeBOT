@@ -1,4 +1,4 @@
-# tictactoeBOT
+# Tic Tac Toe Bot
 Tic Tac Toe's Winning Bot
 
 # Logic 
